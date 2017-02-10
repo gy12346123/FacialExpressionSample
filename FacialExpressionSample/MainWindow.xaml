@@ -33,13 +33,29 @@
             <Controls:Flyout Header="{StaticResource Setting_Title}" Position="Right" Width="400" Theme="Inverse">
                 <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
                     <StackPanel>
-                        <TextBlock Text="{StaticResource Setting_LoadImage}" FontSize="15" FontWeight="Bold" Margin="10" />
-                        <Button Name="button_LoadLocalFile" Content="{StaticResource Setting_LoadFromFile}" Height="25" Width="80" HorizontalAlignment="Left" Margin="100,10,0,0" IsEnabled="True" Style="{StaticResource AccentedSquareButtonStyle}" ToolTip="Select info.dat." Click="button_LoadLocalFile_Click" />
+                        <TextBlock Text="{StaticResource Setting_LoadImage}" FontSize="15" FontWeight="Bold" Margin="15" />
+                        <Button Name="button_LoadLocalFile" Content="{StaticResource Setting_LoadFromFile}" Height="25" Width="80" HorizontalAlignment="Left" Margin="100,10,0,0" IsEnabled="True" Style="{StaticResource AccentedSquareButtonStyle}" Click="button_LoadLocalFile_Click" />
+                        <Controls:ToggleSwitch Name="toggleSwitch_PreRecognition" Header="{StaticResource Setting_ToggleSwitch_PreRecognition}" Margin="13" IsChecked="True" IsCheckedChanged="toggleSwitch_PreRecognition_IsCheckedChanged" />
+                        <TextBlock Text="{StaticResource Setting_Theme}" FontSize="15" FontWeight="Bold" Margin="15" />
+                        <Button Name="button_Setting_Theme_Light" Content="{StaticResource Setting_Theme_Light}" Width="70" Height="25" Margin="100,0,0,0" HorizontalAlignment="Left" Style="{StaticResource AccentedSquareButtonStyle}" Click="button_Setting_Theme_Light_Click" />
+                        <Button Name="button_Setting_Theme_Dark" Content="{StaticResource Setting_Theme_Dark}" Width="70" Height="25" Margin="240,-25,0,0" HorizontalAlignment="Left" Style="{StaticResource AccentedSquareButtonStyle}" Click="button_Setting_Theme_Dark_Click"  />
                     </StackPanel>
                 </ScrollViewer>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
+    <Window.Resources>
+        <RoutedCommand x:Key="Skip" />
+        <!--<RoutedCommand x:Key="Key1" />-->
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="S" Command="{StaticResource Skip}" />
+        <!--<KeyBinding Key="1" Command="{StaticResource Key1}" />-->
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource Skip}" CanExecute="CommandBinding_Skip_CanExecute" Executed="CommandBinding_Skip_Executed" />
+        <!--<CommandBinding Command="{StaticResource Key1}" CanExecute="CommandBinding_Key1_CanExecute" Executed="CommandBinding_Key1_Executed" />-->
+    </Window.CommandBindings>
     <Grid Name="grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>

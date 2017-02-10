@@ -87,6 +87,8 @@ namespace FacialExpressionSample
 
         private EvaluatorHelper cntkFacialHelper;
 
+        private bool PreRecognition = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -401,7 +403,10 @@ namespace FacialExpressionSample
                     foreach (Rect rect in list)
                     {
                         CallDrawBbox_Delegate(ref BboxGD, rect, ref BboxLabelPen, ref drawingBboxNoticePen);
-                        AutoRecognition();
+                        if (PreRecognition)
+                        {
+                            AutoRecognition();
+                        }
                         autoResetEvent.WaitOne();
                         CountBBox++;
                     }
@@ -450,6 +455,46 @@ namespace FacialExpressionSample
                     await this.ShowMessageAsync(GlobalLanguage.FindText("Common_Error"), ex.Message);
                 });
             }
+        }
+
+        private void toggleSwitch_PreRecognition_IsCheckedChanged(object sender, EventArgs e)
+        {
+            if ((bool)toggleSwitch_PreRecognition.IsChecked)
+            {
+                PreRecognition = true;
+            }
+            else if (!(bool)toggleSwitch_PreRecognition.IsChecked)
+            {
+                PreRecognition = false;
+            }
+        }
+
+        private void button_Setting_Theme_Light_Click(object sender, RoutedEventArgs e)
+        {
+            Tuple<MahApps.Metro.AppTheme, MahApps.Metro.Accent> appStyle = MahApps.Metro.ThemeManager.DetectAppStyle(Application.Current);
+            ChangeAppStyle(appStyle.Item2, ThemeStyle.BaseLight);
+        }
+
+        private void button_Setting_Theme_Dark_Click(object sender, RoutedEventArgs e)
+        {
+            Tuple<MahApps.Metro.AppTheme, MahApps.Metro.Accent> appStyle = MahApps.Metro.ThemeManager.DetectAppStyle(Application.Current);
+            ChangeAppStyle(appStyle.Item2, ThemeStyle.BaseDark);
+        }
+
+        private void CommandBinding_Skip_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (uiData.LastCount > 0)
+            {
+                e.CanExecute = true;
+            }else
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void CommandBinding_Skip_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            autoResetEvent.Set();
         }
     }
 }

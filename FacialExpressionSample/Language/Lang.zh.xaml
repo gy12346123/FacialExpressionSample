@@ -18,4 +18,8 @@
     <sys:String x:Key="Message_Notice_FileNotExist">文件不存在.</sys:String>
     <sys:String x:Key="EvaluatorHelper_ImageSizeError">图像定义有误.</sys:String>
     <sys:String x:Key="EvaluatorHelper_ModelNotExist">FacialCNNModel文件不存在,请在config中设定.</sys:String>
+    <sys:String x:Key="Setting_ToggleSwitch_PreRecognition">预先识别</sys:String>
+    <sys:String x:Key="Setting_Theme">主题</sys:String>
+    <sys:String x:Key="Setting_Theme_Light">亮色</sys:String>
+    <sys:String x:Key="Setting_Theme_Dark">暗色</sys:String>
 </ResourceDictionary>
