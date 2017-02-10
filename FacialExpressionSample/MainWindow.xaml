@@ -1,0 +1,61 @@
+﻿<Controls:MetroWindow x:Class="FacialExpressionSample.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FacialExpressionSample"
+        mc:Ignorable="d"
+        WindowStartupLocation="Manual"
+        NonActiveGlowBrush="#FFAEC9"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="{StaticResource MainWindow_Title}" Height="600" Width="800" Loaded="MetroWindow_Loaded">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Name="button_Setting" ToolTip="{StaticResource Setting_ToolTip}" Click="button_Setting_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="17"
+                    Height="17"
+                    Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                    VerticalAlignment="Center"
+                    Text="{StaticResource Setting_Title}" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl Name="flyoutsControl">
+            <Controls:Flyout Header="{StaticResource Setting_Title}" Position="Right" Width="400" Theme="Inverse">
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
+                    <StackPanel>
+                        <TextBlock Text="{StaticResource Setting_LoadImage}" FontSize="15" FontWeight="Bold" Margin="10" />
+                        <Button Name="button_LoadLocalFile" Content="{StaticResource Setting_LoadFromFile}" Height="25" Width="80" HorizontalAlignment="Left" Margin="100,10,0,0" IsEnabled="True" Style="{StaticResource AccentedSquareButtonStyle}" ToolTip="Select info.dat." Click="button_LoadLocalFile_Click" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+    <Grid Name="grid_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Viewbox Name="viewBox_Button" Grid.Row="0" >
+            <WrapPanel Name="wrapPanel_Button" Visibility="{Binding WarpPanel_ButtonVisibility}"></WrapPanel>
+        </Viewbox>
+        <TextBlock Name="textBlock_FacialResult" Grid.Row="1" Text="{Binding FacialResult}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" />
+        <Image Name="image_Show" Grid.Row="2" Source="{Binding UIImage}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Image Name="Image_Bbox" Grid.Row="2" Source="{Binding BboxImage}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Name="textBlock_Message" Grid.Row="3" Text="{Binding TextMessage}" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="2" />
+        <TextBlock Name="textBlock_Statistics" Grid.Row="3" Text="{Binding LastCount,StringFormat='Last: {0}'}" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2" />
+        <Controls:ProgressRing Name="progressRing_MainWindow" Grid.RowSpan="4" Foreground="{DynamicResource AccentColorBrush}" IsActive="{Binding progressRing_IsActive}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</Controls:MetroWindow>

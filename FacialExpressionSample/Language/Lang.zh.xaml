@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="MainWindow_Title">表情识别样本采集器</sys:String>
+    <sys:String x:Key="Setting_Title">设置</sys:String>
+    <sys:String x:Key="Setting_ToolTip">设置这里开始筛选图片.</sys:String>
+    <sys:String x:Key="Setting_LoadImage">加载图片</sys:String>
+    <sys:String x:Key="Setting_LoadFromFile">读取Info文件</sys:String>
+    <sys:String x:Key="MainWindow_LabelNotFound">表情识别样本采集器</sys:String>
+    <sys:String x:Key="Common_Notice">注意</sys:String>
+    <sys:String x:Key="Common_Done">完成</sys:String>
+    <sys:String x:Key="Common_Error">错误</sys:String>
+    <sys:String x:Key="MainWindow_ShowImage_Message">加载图片: {0}, 请选择对应表情.</sys:String>
+    <sys:String x:Key="MainWindow_Button_LoadLocalFile_Title">选择Info.dat</sys:String>
+    <sys:String x:Key="MainWindow_Button_LoadLocalFile_FileSelectError">选择的文件数有误,请选择一个文件.</sys:String>
+    <sys:String x:Key="MainWindow_Thread_StartShowAndLabel_DoneMessage">以完成所有图片.</sys:String>
+    <sys:String x:Key="Message_Notice_FileNotExist">文件不存在.</sys:String>
+    <sys:String x:Key="EvaluatorHelper_ImageSizeError">图像定义有误.</sys:String>
+    <sys:String x:Key="EvaluatorHelper_ModelNotExist">FacialCNNModel文件不存在,请在config中设定.</sys:String>
+</ResourceDictionary>
